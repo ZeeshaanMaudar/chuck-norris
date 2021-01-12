@@ -6,7 +6,7 @@
   "scripts": {
     "server": "cd ./server && npm install && nodemon server.js",
     "client": "cd ./client && npm install && npm start",
-    "dev": "concurrently --names \"server, client\" \"npm run server --silent\" \"npm run client --silent\""
+    "start": "concurrently --names \"server, client\" \"npm run server --silent\" \"npm run client --silent\""
   },
   "repository": {
     "type": "git",
