@@ -5,6 +5,8 @@ import { GET_CATEGORIES } from '../../queries';
 
 import Category from '../Category';
 
+import colorsArray from '../../utils/colorsArray';
+
 import {
   Wrapper,
   Title,
@@ -21,8 +23,12 @@ interface CategoriesArgs {
 const callCategories = ({ categoriesArray, handleClick, isOpen, categoryChosen }: CategoriesArgs) => {
 
   if(categoriesArray.length > 0) {
-    return categoriesArray.map((category) => {
-      return <Category key={category} {...{ category, handleClick, isOpen, categoryChosen  }} />
+    return categoriesArray.map((category, index) => {
+
+      let color = colorsArray[index];
+
+      return <Category key={category} {...{ category, handleClick, isOpen, categoryChosen, color  }} />;
+      
     })
   }
 
