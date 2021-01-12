@@ -1,13 +1,13 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import { GET_RANDOM_JOKE } from '../../queries';
-
 import RandomJoke from '../RandomJoke';
 
 import ArrowRightIcon from '../../assets/arrow-right.svg';
 import ArrowDownIcon from '../../assets/arrow-down.svg';
 import RefreshIcon from '../../assets/refresh.svg';
+
+import { GET_RANDOM_JOKE } from '../../queries';
 
 import {
   Wrapper,
@@ -68,7 +68,8 @@ const callRandomJoke = ({ isOpen, category, categoryChosen }: CallRandomJokeArgs
 const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChosen, color }) => {
 
   const { loading, error, data, refetch } = useQuery(GET_RANDOM_JOKE, {
-    variables: { category}
+    variables: { category},
+    notifyOnNetworkStatusChange: true,
   });
 
   const randomJokeData = { loading, error, data };
