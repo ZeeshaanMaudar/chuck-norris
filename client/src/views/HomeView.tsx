@@ -1,10 +1,9 @@
 import React from 'react';
+import CategoriesList from '../components/CategoriesList';
 
 const HomeView: React.FC = () => {
   return (
-    <div>
-      Home page
-    </div>
+    <CategoriesList />
   );
 }
 
