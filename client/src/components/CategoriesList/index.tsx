@@ -40,6 +40,12 @@ const CategoriesList: React.FC = () => {
   }
 
   const handleClick = (category: string) => {
+
+    if (categoryChosen && categoryChosen !== category) {
+      setIsOpen(false);
+      setCategoryChosen(category);
+    }
+    
     setIsOpen(prevOpen => !prevOpen);
     setCategoryChosen(category);
   }
