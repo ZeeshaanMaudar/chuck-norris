@@ -2,7 +2,19 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 
 import { GET_RANDOM_JOKE } from '../../queries';
+
 import RandomJoke from '../RandomJoke';
+
+import ArrowRightIcon from '../../assets/arrow-right.svg';
+import ArrowDownIcon from '../../assets/arrow-down.svg';
+import RefreshIcon from '../../assets/refresh.svg';
+
+import {
+  Wrapper,
+  CategoryContainer,
+  Title,
+  IconContainer
+} from './styled';
 
 // displaying use of Context Api just for this assessment's purpose
 export const CategoryContext = React.createContext<any | null>(null);
@@ -13,13 +25,40 @@ interface Props {
   categoryChosen: string
 }
 
-interface callRandomJokeArgs {
+interface CallRandomJokeArgs {
   isOpen: boolean,
   category: string,
   categoryChosen: string
 }
 
-const callRandomJoke = ({ isOpen, category, categoryChosen }: callRandomJokeArgs) => {
+interface CallIconsArgs {
+  isOpen: boolean,
+  category: string,
+  categoryChosen: string,
+  handleClick: (category: string, refetch: () => void) => void,
+  refetch: () => void
+}
+
+const callIcons = ({ isOpen, category, categoryChosen, handleClick, refetch }: CallIconsArgs) => {
+
+  if (isOpen && category === categoryChosen) {
+    return (
+      <IconContainer>
+        <img
+          src={RefreshIcon}
+          alt='refresh icon'
+          onClick={() => handleClick(category, refetch)}
+        />
+        <img src={ArrowDownIcon} alt='arrow down icon' />
+      </IconContainer>
+    )
+  }
+
+  return <img src={ArrowRightIcon} alt='arrow right icon' />;
+
+}
+
+const callRandomJoke = ({ isOpen, category, categoryChosen }: CallRandomJokeArgs) => {
   if (isOpen && category === categoryChosen) {
     return <RandomJoke />
   }
@@ -35,12 +74,13 @@ const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChos
 
   return (
     <CategoryContext.Provider value={randomJokeData}>
-      <div>
-        <div onClick={() => handleClick(category, refetch)}>
-          <h4>{category}</h4>
-        </div>
+      <Wrapper>
+        <CategoryContainer onClick={() => handleClick(category, refetch)}>
+          <Title>{category}</Title>
+          {callIcons({ isOpen, category, categoryChosen, handleClick, refetch })}
+        </CategoryContainer>
         {callRandomJoke({ isOpen, category, categoryChosen })}
-    </div>
+    </Wrapper>
     </CategoryContext.Provider>
   );
 }
