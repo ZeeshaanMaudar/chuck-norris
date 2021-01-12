@@ -8,7 +8,7 @@ import Category from '../Category';
 
 interface CategoriesArgs {
   categoriesArray: string[],
-  handleClick: (category: string) => void,
+  handleClick: (category: string, refetch: () => void) => void,
   isOpen: boolean,
   categoryChosen: string
 }
@@ -39,13 +39,14 @@ const CategoriesList: React.FC = () => {
     return <SpinnerCircular />
   }
 
-  const handleClick = (category: string) => {
+  const handleClick = (category: string, refetch: () => void) => {
 
     if (categoryChosen && categoryChosen !== category) {
       setIsOpen(false);
       setCategoryChosen(category);
     }
     
+    refetch();
     setIsOpen(prevOpen => !prevOpen);
     setCategoryChosen(category);
   }

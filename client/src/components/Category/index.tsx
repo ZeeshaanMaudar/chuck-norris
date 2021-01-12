@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloError, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import { GET_RANDOM_JOKE } from '../../queries';
 import RandomJoke from '../RandomJoke';
@@ -8,7 +8,7 @@ import RandomJoke from '../RandomJoke';
 export const CategoryContext = React.createContext<any | null>(null);
 interface Props {
   category: string,
-  handleClick: (category: string) => void,
+  handleClick: (category: string, refetch: () => void) => void,
   isOpen: boolean,
   categoryChosen: string
 }
@@ -27,7 +27,7 @@ const callRandomJoke = ({ isOpen, category, categoryChosen }: callRandomJokeArgs
 
 const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChosen }) => {
 
-  const { loading, error, data } = useQuery(GET_RANDOM_JOKE, {
+  const { loading, error, data, refetch } = useQuery(GET_RANDOM_JOKE, {
     variables: { category}
   });
 
@@ -36,7 +36,7 @@ const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChos
   return (
     <CategoryContext.Provider value={randomJokeData}>
       <div>
-        <div onClick={() => handleClick(category)}>
+        <div onClick={() => handleClick(category, refetch)}>
           <h4>{category}</h4>
         </div>
         {callRandomJoke({ isOpen, category, categoryChosen })}
