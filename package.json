@@ -1,0 +1,22 @@
+{
+  "name": "chuck-norris",
+  "version": "1.0.0",
+  "description": "A full stack app with the chuck norris api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeeshaanMaudar/chuck-norris.git"
+  },
+  "author": "Zeeshaan Maudarbocus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZeeshaanMaudar/chuck-norris/issues"
+  },
+  "homepage": "https://github.com/ZeeshaanMaudar/chuck-norris#readme",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
