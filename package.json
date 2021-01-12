@@ -4,7 +4,9 @@
   "description": "A full stack app with the chuck norris api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "cd ./server && nodemon server.js",
+    "client": "cd ./client && npm start",
+    "dev": "concurrently --names \"server, client\" \"npm run server --silent\" \"npm run client --silent\""
   },
   "repository": {
     "type": "git",
