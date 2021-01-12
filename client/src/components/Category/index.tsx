@@ -1,5 +1,7 @@
 import React from 'react';
 
+import RandomJoke from '../RandomJoke';
+
 interface Props {
   category: string,
   handleClick: (category: string) => void,
@@ -15,7 +17,7 @@ interface callRandomJokeArgs {
 
 const callRandomJoke = ({ isOpen, category, categoryChosen }: callRandomJokeArgs) => {
   if (isOpen && category === categoryChosen) {
-    return <div>Random Joke query</div>
+    return <RandomJoke />
   }
 }
 
