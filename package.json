@@ -4,8 +4,8 @@
   "description": "A full stack app with the chuck norris api",
   "main": "index.js",
   "scripts": {
-    "server": "cd ./server && install && nodemon server.js",
-    "client": "cd ./client && install && npm start",
+    "server": "cd ./server && npm install && nodemon server.js",
+    "client": "cd ./client && npm install && npm start",
     "dev": "concurrently --names \"server, client\" \"npm run server --silent\" \"npm run client --silent\""
   },
   "repository": {
