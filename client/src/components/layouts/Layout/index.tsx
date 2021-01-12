@@ -1,11 +1,15 @@
 import React, { ReactNode } from 'react';
+import Header from '../Header';
 
 import { Wrapper } from './styled';
 
 const Layout: React.FC<ReactNode> = ({ children }) => {
   return (
     <Wrapper>
-      {children}
+      <Header />
+      <div>
+        {children}
+      </div>
     </Wrapper>
   );
 }
