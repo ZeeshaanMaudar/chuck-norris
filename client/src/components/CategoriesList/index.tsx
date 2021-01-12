@@ -18,7 +18,7 @@ interface CategoriesArgs {
   openAccordion: (category: string, refetch: () => void) => void,
   isOpen: boolean,
   categoryChosen: string,
-  refreshRandomJoke: (event: any, refetch: () => void)
+  refreshRandomJoke: (event: any, refetch: () => void) => void
 }
 
 const callCategories = ({ categoriesArray, openAccordion, isOpen, categoryChosen, refreshRandomJoke }: CategoriesArgs) => {

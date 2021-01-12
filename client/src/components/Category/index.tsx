@@ -24,7 +24,7 @@ interface Props {
   isOpen: boolean,
   categoryChosen: string,
   color: string,
-  refreshRandomJoke: (event: any, refetch: () => void)
+  refreshRandomJoke: (event: any, refetch: () => void) => void
 }
 
 interface CallRandomJokeArgs {
@@ -38,7 +38,7 @@ interface CallIconsArgs {
   category: string,
   categoryChosen: string,
   refetch: () => void,
-  refreshRandomJoke: (event: any, refetch: () => void)
+  refreshRandomJoke: (event: any, refetch: () => void) => void
 }
 
 const callIcons = ({ isOpen, category, categoryChosen, refreshRandomJoke, refetch }: CallIconsArgs) => {
