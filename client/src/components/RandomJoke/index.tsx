@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
-import { SpinnerCircular } from 'spinners-react';
 
 import { CategoryContext } from '../Category';
+
+import {
+  Wrapper,
+  Spinner,
+  Image,
+  Content
+} from './styled';
 
 const RandomJoke: React.FC = () => {
 
@@ -12,16 +18,16 @@ const RandomJoke: React.FC = () => {
   }
 
   if (loading) {
-    return <SpinnerCircular />
+    return <Spinner />
   }
 
   const { icon_url, value } = data.getRandomJoke;
 
   return (
-    <div>
-      <img src={icon_url} alt='chuck norris avatar' />
-      <p>{value}</p>
-    </div>
+    <Wrapper>
+      <Image src={icon_url} alt='chuck norris avatar' />
+      <Content>{value}</Content>
+    </Wrapper>
   );
 }
 
