@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { SpinnerCircular } from 'spinners-react';
 
 import { GET_CATEGORIES } from '../../queries';
 
 import Category from '../Category';
+
+import {
+  Wrapper,
+  Title,
+  Spinner
+} from './styled';
 
 interface CategoriesArgs {
   categoriesArray: string[],
@@ -36,7 +41,7 @@ const CategoriesList: React.FC = () => {
   }
 
   if (loading) {
-    return <SpinnerCircular />
+    return <Spinner />
   }
 
   const handleClick = (category: string, refetch: () => void) => {
@@ -52,12 +57,12 @@ const CategoriesList: React.FC = () => {
   }
 
   return (
-    <div>
-      <h4>Categories</h4>
+    <Wrapper>
+      <Title>Categories</Title>
       <div>
         {callCategories({ categoriesArray: data.categories, handleClick, isOpen, categoryChosen })}
       </div>
-    </div>
+    </Wrapper>
   );
 }
 
