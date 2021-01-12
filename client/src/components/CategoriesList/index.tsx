@@ -9,11 +9,14 @@ interface CategoriesArgs {
 }
 
 const callCategories = ({ categoriesArray }: CategoriesArgs) => {
+  
   if(categoriesArray.length > 0) {
     return categoriesArray.map((category) => {
       return <div key={category}>{category}</div>
     })
   }
+
+  return null;
 }
 
 const CategoriesList: React.FC = () => {
