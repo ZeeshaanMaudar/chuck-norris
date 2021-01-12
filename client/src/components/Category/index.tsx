@@ -20,10 +20,11 @@ import {
 export const CategoryContext = React.createContext<any | null>(null);
 interface Props {
   category: string,
-  handleClick: (category: string, refetch: () => void) => void,
+  openAccordion: (category: string, refetch: () => void) => void,
   isOpen: boolean,
   categoryChosen: string,
-  color: string
+  color: string,
+  refreshRandomJoke: (event: any, refetch: () => void)
 }
 
 interface CallRandomJokeArgs {
@@ -36,11 +37,11 @@ interface CallIconsArgs {
   isOpen: boolean,
   category: string,
   categoryChosen: string,
-  handleClick: (category: string, refetch: () => void) => void,
-  refetch: () => void
+  refetch: () => void,
+  refreshRandomJoke: (event: any, refetch: () => void)
 }
 
-const callIcons = ({ isOpen, category, categoryChosen, handleClick, refetch }: CallIconsArgs) => {
+const callIcons = ({ isOpen, category, categoryChosen, refreshRandomJoke, refetch }: CallIconsArgs) => {
 
   if (isOpen && category === categoryChosen) {
     return (
@@ -48,7 +49,7 @@ const callIcons = ({ isOpen, category, categoryChosen, handleClick, refetch }: C
         <img
           src={RefreshIcon}
           alt='refresh icon'
-          onClick={() => handleClick(category, refetch)}
+          onClick={event => refreshRandomJoke(event, refetch)}
         />
         <img src={ArrowDownIcon} alt='arrow down icon' />
       </IconContainer>
@@ -65,7 +66,7 @@ const callRandomJoke = ({ isOpen, category, categoryChosen }: CallRandomJokeArgs
   }
 }
 
-const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChosen, color }) => {
+const Category: React.FC<Props> = ({ category, openAccordion, isOpen, categoryChosen, color, refreshRandomJoke }) => {
 
   const { loading, error, data, refetch } = useQuery(GET_RANDOM_JOKE, {
     variables: { category},
@@ -76,10 +77,10 @@ const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChos
 
   return (
     <CategoryContext.Provider value={randomJokeData}>
-      <Wrapper onClick={() => handleClick(category, refetch)} {...{ color }}>
+      <Wrapper onClick={() => openAccordion(category, refetch)} {...{ color }}>
         <CategoryContainer>
           <Title>{category}</Title>
-          {callIcons({ isOpen, category, categoryChosen, handleClick, refetch })}
+          {callIcons({ isOpen, category, categoryChosen, refreshRandomJoke, refetch })}
         </CategoryContainer>
         {callRandomJoke({ isOpen, category, categoryChosen })}
     </Wrapper>

@@ -15,19 +15,20 @@ import {
 
 interface CategoriesArgs {
   categoriesArray: string[],
-  handleClick: (category: string, refetch: () => void) => void,
+  openAccordion: (category: string, refetch: () => void) => void,
   isOpen: boolean,
-  categoryChosen: string
+  categoryChosen: string,
+  refreshRandomJoke: (event: any, refetch: () => void)
 }
 
-const callCategories = ({ categoriesArray, handleClick, isOpen, categoryChosen }: CategoriesArgs) => {
+const callCategories = ({ categoriesArray, openAccordion, isOpen, categoryChosen, refreshRandomJoke }: CategoriesArgs) => {
 
   if(categoriesArray.length > 0) {
     return categoriesArray.map((category, index) => {
 
       let color = colorsArray[index];
 
-      return <Category key={category} {...{ category, handleClick, isOpen, categoryChosen, color  }} />;
+      return <Category key={category} {...{ category, openAccordion, isOpen, categoryChosen, color, refreshRandomJoke }} />;
       
     })
   }
@@ -50,7 +51,7 @@ const CategoriesList: React.FC = () => {
     return <Spinner />
   }
 
-  const handleClick = (category: string, refetch: () => void) => {
+  const openAccordion = (category: string, refetch: () => void) => {
 
     if (categoryChosen && categoryChosen !== category) {
       setIsOpen(false);
@@ -60,13 +61,22 @@ const CategoriesList: React.FC = () => {
     refetch();
     setIsOpen(prevOpen => !prevOpen);
     setCategoryChosen(category);
+
+  }
+
+  const refreshRandomJoke = (event: any, refetch: () => void) => {
+
+    event.stopPropagation();
+
+    refetch();
+
   }
 
   return (
     <Wrapper>
       <Title>Categories</Title>
       <div>
-        {callCategories({ categoriesArray: data.categories, handleClick, isOpen, categoryChosen })}
+        {callCategories({ categoriesArray: data.categories, openAccordion, isOpen, categoryChosen, refreshRandomJoke })}
       </div>
     </Wrapper>
   );
