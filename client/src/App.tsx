@@ -1,11 +1,10 @@
 import React from 'react';
+import HomeView from './views/HomeView';
 
-const App = () => {
-  return (
-    <div>
-      Chuck Norris App
-    </div>
-  );
+const App: React.FC = () => {
+
+  return <HomeView />;
+  
 }
 
 export default App;
