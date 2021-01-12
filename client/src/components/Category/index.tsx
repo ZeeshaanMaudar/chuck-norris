@@ -22,7 +22,8 @@ interface Props {
   category: string,
   handleClick: (category: string, refetch: () => void) => void,
   isOpen: boolean,
-  categoryChosen: string
+  categoryChosen: string,
+  color: string
 }
 
 interface CallRandomJokeArgs {
@@ -64,7 +65,7 @@ const callRandomJoke = ({ isOpen, category, categoryChosen }: CallRandomJokeArgs
   }
 }
 
-const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChosen }) => {
+const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChosen, color }) => {
 
   const { loading, error, data, refetch } = useQuery(GET_RANDOM_JOKE, {
     variables: { category}
@@ -74,8 +75,8 @@ const Category: React.FC<Props> = ({ category, handleClick, isOpen, categoryChos
 
   return (
     <CategoryContext.Provider value={randomJokeData}>
-      <Wrapper>
-        <CategoryContainer onClick={() => handleClick(category, refetch)}>
+      <Wrapper onClick={() => handleClick(category, refetch)} {...{ color }}>
+        <CategoryContainer>
           <Title>{category}</Title>
           {callIcons({ isOpen, category, categoryChosen, handleClick, refetch })}
         </CategoryContainer>
