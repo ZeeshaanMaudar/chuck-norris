@@ -23,7 +23,12 @@ This project makes uses:
 
 In the project directory, you can run:
 
-### `npm run dev`
+
+## How to start the project
+
+ - clone this project
+ - Run `npm start`
+### `npm start`
 
 This command will launch both the client and the server app in the development mode on [http://localhost:3000](http://localhost:3000) and [http://localhost:4000](http://localhost:4000) respectively.
 
