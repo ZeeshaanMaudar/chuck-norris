@@ -40,6 +40,18 @@ You will also see any lint errors in the console.
 Runs the server in the development mode.\
 Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
 
+## CodeSandbox
+You can find codesandbox version at [https://codesandbox.io/s/github/ZeeshaanMaudar/chuck-norris](https://codesandbox.io/s/github/ZeeshaanMaudar/chuck-norris)
+
+Since it is running both the server graphql and the client, codesandbox chooses the server one by default as the main view to show. However, upon first launching the link or a quick refresh, a pop up will notify the following: 
+
+Port 3000 Opened
+The server is listening on port 3000, do you want to open it?
+
+Click on Open Browser Pane and the client side will be available for preview.
+
+Alternatively, fork the project on codesandbox, then navigate to Server Control Panel. Then under Open Ports, select the `3000` one.
+
 
 ## Very Important Note
 
