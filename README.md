@@ -68,6 +68,10 @@ Find out more about the deprecated `react-apollo` [here](https://www.apollograph
 Another note about `react-apollo` is that I found that there used to be a way for it to be integrated with Redux. However, that
 was a much older version, i.e, v1. It is now on v3.
 
-Hence the decision to leave `redux` out for this task.
+Hence the decision to leave `redux` out for this project.
 
+In order to display skill and understanding in `redux`, I have chosen to build an exact replica of this project, but this time only using react and redux to meet the requirements.
 
+You can find the link to the front end react and redux application at [https://github.com/ZeeshaanMaudar/chuck-norris-redux](https://github.com/ZeeshaanMaudar/chuck-norris-redux)
+
+Its respective codesandbox link can be found at [https://codesandbox.io/s/github/ZeeshaanMaudar/chuck-norris-redux](https://codesandbox.io/s/github/ZeeshaanMaudar/chuck-norris-redux)
